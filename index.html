@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arambhi Investments — arambhi-investments.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #faf6ef;
+    --bg-alt:    #f3ede2;
+    --bg-card:   #fdf9f3;
+    --gold:      #b8873a;
+    --gold-dark: #8a6220;
+    --gold-light:#c9a55a;
+    --gold-pale: #e8d5a8;
+    --text:      #1a1a1a;
+    --text-mid:  #2e2e2e;
+    --text-muted:#6b6456;
+    --border:    rgba(184,135,58,0.25);
+    --nav-bg:    #1e2d45;
+    --nav-text:  #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 60px;
+    background: var(--nav-bg);
+    border-bottom: 1px solid rgba(184,135,58,0.2);
+    backdrop-filter: blur(6px);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--gold-light); letter-spacing: 0.04em; text-decoration: none;
+  }
+  .nav-logo span { color: #ffffff; font-weight: 400; }
+  .nav-cta {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #ffffff;
+    border: 1.5px solid var(--gold-light); padding: 10px 24px;
+    text-decoration: none; transition: all 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: var(--bg-alt); position: relative; overflow: hidden; padding-top: 80px;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 60% 50%, rgba(184,137,42,0.06) 0%, transparent 70%);
+  }
+  .hero-content {
+    position: relative; z-index: 2; max-width: 860px;
+    padding: 0 40px; text-align: center; animation: fadeUp 1s ease both;
+  }
+  .hero-eyebrow {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 28px;
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--gold); opacity: 0.5;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 700;
+    line-height: 1.12; color: var(--text); margin-bottom: 12px;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 300; font-style: italic;
+    color: var(--text-muted); margin-bottom: 52px; line-height: 1.6;
+  }
+  .hero-stats {
+    display: flex; justify-content: center;
+    border: 1px solid var(--border); background: #fff; margin-bottom: 52px;
+  }
+  .stat { padding: 28px 48px; border-right: 1px solid var(--border); flex: 1; }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700;
+    color: var(--gold); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.62rem; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--text-muted); margin-top: 6px;
+  }
+  .hero-btn {
+    display: inline-block; font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    background: var(--gold); color: #fff; padding: 18px 48px;
+    text-decoration: none; transition: all 0.3s;
+  }
+  .hero-btn:hover { background: var(--gold-dark); transform: translateY(-2px); }
+
+  /* DIVIDER */
+  .divider {
+    display: flex; align-items: center; justify-content: center;
+    gap: 20px; padding: 0 60px;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+  .divider-diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); }
+
+  /* SECTION BASE */
+  section { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700;
+    color: var(--text); margin-bottom: 20px; line-height: 1.2;
+  }
+  .section-body {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
+    line-height: 1.8; color: var(--text-muted); max-width: 640px;
+  }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-pillars {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--border); border: 1px solid var(--border); margin-top: 40px;
+  }
+  .pillar { background: var(--bg); padding: 28px 24px; }
+  .pillar-icon { font-size: 1.4rem; margin-bottom: 10px; }
+  .pillar-title {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gold-dark); margin-bottom: 6px;
+  }
+  .pillar-text { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+  .about-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    padding: 48px 40px; position: relative;
+  }
+  .about-card::before {
+    content: ''; position: absolute; top: -1px; left: 40px; right: 40px;
+    height: 2px; background: var(--gold);
+  }
+  .about-card-label {
+    font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 24px;
+  }
+  .about-card-quote {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-style: italic;
+    color: var(--text-mid); line-height: 1.7; margin-bottom: 32px;
+  }
+  .about-card-items { list-style: none; }
+  .about-card-items li {
+    font-size: 0.78rem; color: var(--text-muted);
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .about-card-items li::before { content: '◆'; color: var(--gold); font-size: 0.5rem; }
+
+  /* INVESTMENTS */
+  .invest-full { background: var(--bg-alt); padding: 100px 0; }
+  .invest-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+  .invest-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--border); margin-top: 60px;
+  }
+  .invest-card { background: var(--bg); padding: 44px 36px; transition: background 0.3s; }
+  .invest-card:hover { background: var(--gold-pale); }
+  .invest-card-num {
+    font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700;
+    color: rgba(184,137,42,0.15); line-height: 1; margin-bottom: 20px;
+  }
+  .invest-card-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--text); margin-bottom: 14px; }
+  .invest-card-text { font-size: 0.8rem; color: var(--text-muted); line-height: 1.7; }
+  .invest-card-tag {
+    display: inline-block; margin-top: 24px;
+    font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold);
+    border: 1px solid var(--border); padding: 5px 14px;
+  }
+
+  /* TERMS */
+  .terms-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--border); border: 1px solid var(--border); margin-top: 60px;
+  }
+  .term-box { background: var(--bg-alt); padding: 44px 40px; }
+  .term-box-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold-dark); margin-bottom: 12px; }
+  .term-box-val { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
+  .term-box-val strong { color: var(--text); font-weight: 600; }
+  .compliance-bar {
+    margin-top: 40px; border-left: 3px solid var(--gold); padding: 20px 28px;
+    background: var(--gold-pale); font-size: 0.8rem; color: var(--text-muted); line-height: 1.7;
+  }
+  .compliance-bar strong { color: var(--gold-dark); }
+
+  /* RISK */
+  .risk-full { background: var(--bg); padding: 100px 0; }
+  .risk-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+  .risk-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 60px; }
+  .risk-item { border: 1px solid var(--border); padding: 36px 32px; background: var(--bg-alt); }
+  .risk-num { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 14px; }
+  .risk-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--text); margin-bottom: 10px; }
+  .risk-text { font-size: 0.78rem; color: var(--text-muted); line-height: 1.7; }
+  .disclaimer-box {
+    margin-top: 48px; background: var(--gold-pale);
+    border: 1px solid var(--border); padding: 36px 40px;
+  }
+  .disclaimer-box h3 {
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold-dark); margin-bottom: 16px;
+  }
+  .disclaimer-box p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 10px; }
+  .disclaimer-box p:last-child { margin-bottom: 0; }
+
+  /* CONTACT */
+  .contact-full { background: var(--bg-alt); padding: 100px 0; }
+  .contact-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 60px; align-items: start; }
+  .contact-item {
+    display: flex; gap: 20px; align-items: flex-start;
+    padding: 24px 0; border-bottom: 1px solid var(--border);
+  }
+  .contact-item:first-child { border-top: 1px solid var(--border); }
+  .contact-item-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    border: 1px solid var(--border); background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 1rem;
+  }
+  .contact-item-label {
+    font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 6px;
+  }
+  .contact-item-val { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--text); }
+  .contact-item-val a { color: var(--text); text-decoration: none; }
+  .contact-item-val a:hover { color: var(--gold); }
+  .contact-cta-box {
+    background: #fff; border: 1px solid var(--border);
+    padding: 52px 44px; position: relative;
+  }
+  .contact-cta-box::before {
+    content: ''; position: absolute; top: -1px; left: 44px; right: 44px; height: 2px; background: var(--gold);
+  }
+  .contact-cta-label {
+    font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
+  }
+  .contact-cta-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--text); line-height: 1.3; margin-bottom: 16px; }
+  .contact-cta-text { font-size: 0.8rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 36px; }
+  .contact-cta-btn {
+    display: inline-block; font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    background: var(--gold); color: #fff; padding: 16px 40px;
+    text-decoration: none; transition: all 0.3s;
+  }
+  .contact-cta-btn:hover { background: var(--gold-dark); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--text); border-top: 3px solid var(--gold);
+    padding: 40px 60px; display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .footer-copy { font-size: 0.68rem; color: rgba(255,255,255,0.4); letter-spacing: 0.06em; }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a {
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* FORM */
+  .contact-form-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 44px 40px;
+    position: relative;
+  }
+  .contact-form-box::before {
+    content: ''; position: absolute;
+    top: -1px; left: 40px; right: 40px;
+    height: 2px; background: var(--gold);
+  }
+  .contact-form-label {
+    font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 28px;
+  }
+  .cform-group { margin-bottom: 20px; }
+  .cform-label {
+    display: block; font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 8px;
+  }
+  .cform-input {
+    width: 100%; padding: 12px 16px;
+    background: var(--bg); border: 1px solid var(--border);
+    color: var(--text); font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem; outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+  .cform-input:focus { border-color: var(--gold); }
+  .cform-textarea { resize: vertical; min-height: 100px; }
+  .cform-btn {
+    width: 100%; padding: 16px;
+    background: var(--gold); color: #fff;
+    border: none; cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    transition: all 0.3s; margin-top: 8px;
+  }
+  .cform-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .cf-success {
+    background: rgba(184,135,58,0.1); border: 1px solid var(--gold);
+    color: var(--gold); padding: 12px 16px;
+    font-size: 0.78rem; margin-bottom: 16px;
+  }
+
+  /* REACH BUTTONS */
+  .reach-label {
+    font-size: 0.62rem; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--text-muted);
+    margin: 32px 0 14px;
+  }
+  .reach-btns { display: flex; gap: 12px; }
+  .reach-btn {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 14px 20px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    border: 1.5px solid var(--border); color: var(--text);
+    transition: all 0.3s;
+  }
+  .reach-wa:hover { background: #25d366; border-color: #25d366; color: #fff; }
+  .reach-email:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 18px 28px; }
+    section { padding: 70px 28px; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .invest-cards, .terms-grid, .risk-grid { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat:last-child { border-bottom: none; }
+    footer { flex-direction: column; text-align: center; padding: 32px 28px; }
+    .footer-links { justify-content: center; }
+    .invest-inner, .risk-inner, .contact-inner { padding: 0 28px; }
+    .about-pillars { grid-template-columns: 1fr; }
+    .reach-btns { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Arambhi <span>Investments</span></a>
+  <a href="#contact" class="nav-cta">Investor Inquiry</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Accredited Investors Only</div>
+    <h1 class="hero-title">Secure Wealth Through<br><em>Real Estate</em></h1>
+    <p class="hero-subtitle">Income-producing real estate investments in motels, gas stations,<br>and commercial properties across the United States.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">80%</div><div class="stat-label">Investor Profit Share</div></div>
+      <div class="stat"><div class="stat-num">$25K</div><div class="stat-label">Minimum Investment</div></div>
+      <div class="stat"><div class="stat-num">3–7 Yr</div><div class="stat-label">Investment Horizon</div></div>
+    </div>
+    <a href="#contact" class="hero-btn">Schedule a Consultation</a>
+  </div>
+</div>
+
+<section class="reveal">
+  <div class="about-grid">
+    <div>
+      <p class="section-label">About the Firm</p>
+      <h2 class="section-title">A Disciplined Approach to Alternative Real Estate</h2>
+      <p class="section-body">Arambhi Investments is a private investment firm specializing in income-producing real estate assets — motels, franchise gas stations, and commercial properties — across the United States. We combine disciplined acquisitions with operational excellence to deliver stable, asset-backed returns.</p>
+      <div class="about-pillars">
+        <div class="pillar"><div class="pillar-icon">⚖️</div><div class="pillar-title">Integrity</div><div class="pillar-text">Every decision guided by honesty and accountability.</div></div>
+        <div class="pillar"><div class="pillar-icon">🛡️</div><div class="pillar-title">Risk Discipline</div><div class="pillar-text">Conservative leverage below 60% LTV on all assets.</div></div>
+        <div class="pillar"><div class="pillar-icon">📊</div><div class="pillar-title">Transparency</div><div class="pillar-text">Quarterly reports and annual audited financials.</div></div>
+        <div class="pillar"><div class="pillar-icon">🤝</div><div class="pillar-title">Partnerships</div><div class="pillar-text">Management co-invests alongside every partner.</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="about-card">
+        <div class="about-card-label">Our Investment Philosophy</div>
+        <div class="about-card-quote">"To deliver stable, asset-backed returns through disciplined acquisitions and operational excellence."</div>
+        <ul class="about-card-items">
+          <li>Independent appraisals & environmental clearance on every asset</li>
+          <li>Clean title acquisition with conservative leverage ratios</li>
+          <li>Operational improvement program on all acquired properties</li>
+          <li>Full KYC/AML verification — Reg D 506(c) compliant</li>
+          <li>Open exclusively to Accredited or Qualified Investors</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+
+<div class="invest-full">
+  <div class="invest-inner reveal">
+    <p class="section-label">Target Asset Portfolio</p>
+    <h2 class="section-title">What We Invest In</h2>
+    <div class="invest-cards">
+      <div class="invest-card">
+        <div class="invest-card-num">01</div>
+        <div class="invest-card-title">Motels & Hospitality</div>
+        <div class="invest-card-text">Branded and independent properties in high-traffic corridors. We target assets with strong occupancy potential and pursue franchise partnerships to accelerate performance.</div>
+        <div class="invest-card-tag">High-Traffic Corridors</div>
+      </div>
+      <div class="invest-card">
+        <div class="invest-card-num">02</div>
+        <div class="invest-card-title">Franchise Gas Stations</div>
+        <div class="invest-card-text">Well-established fuel and convenience locations with major brand recognition. These assets generate consistent, recurring cash flow with limited operational complexity.</div>
+        <div class="invest-card-tag">Consistent Cash Flow</div>
+      </div>
+      <div class="invest-card">
+        <div class="invest-card-num">03</div>
+        <div class="invest-card-title">Commercial Properties</div>
+        <div class="invest-card-text">High-traffic retail and service locations with strong tenant profiles and long-term lease agreements. Combines capital appreciation with predictable monthly income.</div>
+        <div class="invest-card-tag">Long-Term Leases</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="reveal">
+  <p class="section-label">Profit Sharing & Terms</p>
+  <h2 class="section-title">Structured to Align Our Interests with Yours</h2>
+  <p class="section-body">Our profit-sharing structure is straightforward and transparent, designed so that Arambhi Investments only succeeds when our partners do.</p>
+  <div class="terms-grid">
+    <div class="term-box"><div class="term-box-title">Profit Distribution</div><div class="term-box-val"><strong>80% of net profits</strong> are distributed to investors. The remaining 20% goes to Arambhi Investments for management and operational oversight.</div></div>
+    <div class="term-box"><div class="term-box-title">Investment Horizon</div><div class="term-box-val">A <strong>3-year mandatory holding period</strong> with no early withdrawals, ensuring full property optimization and value creation for all partners.</div></div>
+    <div class="term-box"><div class="term-box-title">Minimum Commitment</div><div class="term-box-val">Participation begins at <strong>$25,000 minimum investment</strong>. Investors should only commit capital they are prepared to hold for the full term.</div></div>
+    <div class="term-box"><div class="term-box-title">Investor Eligibility</div><div class="term-box-val">Open exclusively to <strong>Accredited or Qualified Investors</strong> as defined under SEC Rule 501 of Regulation D.</div></div>
+  </div>
+  <div class="compliance-bar"><strong>Compliance:</strong> Arambhi Investments operates under U.S. Regulation D 506(c) exemptions with full KYC/AML verification protocols. All investors undergo identity verification prior to participation.</div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+
+<div class="risk-full">
+  <div class="risk-inner reveal">
+    <p class="section-label">Risk Disclosures</p>
+    <h2 class="section-title">Important Risks to Understand</h2>
+    <div class="risk-grid">
+      <div class="risk-item"><div class="risk-num">Risk 01</div><div class="risk-title">No Guarantee of Returns</div><div class="risk-text">Target returns are projections based on current assumptions and internal modeling. Actual results may differ materially. Past performance is not indicative of future results.</div></div>
+      <div class="risk-item"><div class="risk-num">Risk 02</div><div class="risk-title">Risk of Loss</div><div class="risk-text">Real estate investments are speculative and involve significant risk, including the potential loss of your entire investment. Only invest capital you can afford to lose.</div></div>
+      <div class="risk-item"><div class="risk-num">Risk 03</div><div class="risk-title">Illiquidity</div><div class="risk-text">Investments are generally illiquid. There is no secondary market for these interests. Investors must be prepared to hold for the full project term, typically 3–7 years.</div></div>
+      <div class="risk-item"><div class="risk-num">Risk 04</div><div class="risk-title">Regulatory & Market Risk</div><div class="risk-text">Zoning laws, tax policies, interest rates, and environmental regulations may affect property values and operational requirements over the investment period.</div></div>
+    </div>
+    <div class="disclaimer-box">
+      <h3>Important Legal Disclaimer</h3>
+      <p>The information on this website is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any securities. Investment opportunities are available only to verified Accredited Investors as defined by SEC Rule 501 of Regulation D.</p>
+      <p>Arambhi Investments LLC does not provide tax, legal, or financial advice. Prospective investors should consult their own advisors before making any investment decision.</p>
+    </div>
+  </div>
+</div>
+
+<div class="contact-full">
+  <div class="contact-inner reveal" id="contact">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Begin Your Investor Inquiry</h2>
+    <p class="section-body" style="margin-bottom:52px;">Fill out the form below or reach us directly — we respond to all inquiries within one business day.</p>
+
+    <div class="contact-grid">
+
+      <!-- LEFT: Form -->
+      <div class="contact-form-box">
+        <div class="contact-form-label">Inquiry Form</div>
+        <div class="cform-group">
+          <label class="cform-label">Full Name</label>
+          <input class="cform-input" type="text" id="cf-name" placeholder="Your full name">
+        </div>
+        <div class="cform-group">
+          <label class="cform-label">Email Address</label>
+          <input class="cform-input" type="email" id="cf-email" placeholder="you@example.com">
+        </div>
+        <div class="cform-group">
+          <label class="cform-label">Phone Number</label>
+          <input class="cform-input" type="tel" id="cf-phone" placeholder="+1 (000) 000-0000">
+        </div>
+        <div class="cform-group">
+          <label class="cform-label">Investment Amount</label>
+          <select class="cform-input" id="cf-amount">
+            <option value="" disabled selected>Select a range</option>
+            <option>$25,000 – $50,000</option>
+            <option>$50,000 – $100,000</option>
+            <option>$100,000 – $250,000</option>
+            <option>$250,000+</option>
+          </select>
+        </div>
+        <div class="cform-group">
+          <label class="cform-label">Message (Optional)</label>
+          <textarea class="cform-input cform-textarea" id="cf-message" placeholder="Tell us about your investment goals..."></textarea>
+        </div>
+        <div id="cf-success" class="cf-success" style="display:none;">✔ Your inquiry has been sent. We'll be in touch shortly.</div>
+        <button class="cform-btn" onclick="submitForm()">Send Inquiry via Email</button>
+      </div>
+
+      <!-- RIGHT: Direct contact options -->
+      <div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div><div class="contact-item-label">Phone</div><div class="contact-item-val"><a href="tel:+17652776664">+1 (765) 277-6664</a></div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div><div class="contact-item-label">Email</div><div class="contact-item-val"><a href="mailto:invest@arambhi-investments.com">invest@arambhi-investments.com</a></div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🌐</div>
+          <div><div class="contact-item-label">Website</div><div class="contact-item-val">www.arambhi-investments.com</div></div>
+        </div>
+
+        <div class="reach-label">Or reach us instantly</div>
+        <div class="reach-btns">
+          <a href="https://wa.me/17652776664?text=Hello%2C%20I%20am%20interested%20in%20learning%20more%20about%20Arambhi%20Investments." target="_blank" class="reach-btn reach-wa">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <a href="mailto:invest@arambhi-investments.com?subject=Investor%20Inquiry%20-%20Arambhi%20Investments&body=Hello%2C%0A%0AI%20am%20interested%20in%20learning%20more%20about%20investment%20opportunities%20with%20Arambhi%20Investments.%0A%0AName%3A%20%0APhone%3A%20%0AInvestment%20Amount%3A%20%0A%0AThank%20you." class="reach-btn reach-email">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Email Us
+          </a>
+        </div>
+
+        <div class="contact-cta-box" style="margin-top:32px;">
+          <div class="contact-cta-label">Confidential Consultation</div>
+          <div class="contact-cta-title">Speak with Our Team</div>
+          <div class="contact-cta-text">Schedule a private call with our investor relations team to discuss your goals and receive detailed offering materials.</div>
+          <a href="tel:+17652776664" class="contact-cta-btn">Call Now</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="#" class="footer-logo">Arambhi Investments</a>
+  <div class="footer-links">
+    <a href="#">Risk Disclosures</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+  </div>
+  <div class="footer-copy">© 2025 Arambhi Investments LLC. All rights reserved. For Accredited Investors Only.</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  function submitForm() {
+    const name    = document.getElementById('cf-name').value.trim();
+    const email   = document.getElementById('cf-email').value.trim();
+    const phone   = document.getElementById('cf-phone').value.trim();
+    const amount  = document.getElementById('cf-amount').value;
+    const message = document.getElementById('cf-message').value.trim();
+
+    if (!name || !email) {
+      alert('Please enter your name and email address.');
+      return;
+    }
+
+    const subject = encodeURIComponent('Investor Inquiry — Arambhi Investments');
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\nInvestment Amount: ${amount || 'N/A'}\n\nMessage:\n${message || 'N/A'}`
+    );
+    window.location.href = `mailto:invest@arambhi-investments.com?subject=${subject}&body=${body}`;
+
+    document.getElementById('cf-success').style.display = 'block';
+    document.getElementById('cf-name').value = '';
+    document.getElementById('cf-email').value = '';
+    document.getElementById('cf-phone').value = '';
+    document.getElementById('cf-amount').selectedIndex = 0;
+    document.getElementById('cf-message').value = '';
+  }
+</script>
+</body>
+</html>
